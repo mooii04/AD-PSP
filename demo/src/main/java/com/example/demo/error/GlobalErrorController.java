@@ -8,8 +8,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.net.URI;
 
+
 @RestControllerAdvice
-public class GlobalErrorController extends ResponseEntityExceptionHandler {
+public class GlobalErrorController
+        extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ProblemDetail handleProductNotFound(ProductNotFoundException ex) {
@@ -17,10 +19,12 @@ public class GlobalErrorController extends ResponseEntityExceptionHandler {
                 .forStatusAndDetail(HttpStatus.NOT_FOUND,
                         ex.getMessage());
         result.setTitle("Producto no encontrado");
-        result.setType(URI.create("https://www.example.org/errors/not-found"));
+        result.setType(URI.create("https://www.salesianos-triana.edu/errors/product-not-found"));
         result.setProperty("author", "Dorado");
 
         return result;
+
     }
+
 
 }
