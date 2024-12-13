@@ -50,6 +50,7 @@ public class MonumentosRepository {
         monumentos.remove(id);
     }
 
+    //Ver y entender este metodo en casa
     public List<Monumentos> query(double maxLatitud, String sortDirection) {
         List<Monumentos> data = new ArrayList<>(monumentos.values());
         List<Monumentos> result;
@@ -57,7 +58,9 @@ public class MonumentosRepository {
         if (maxLatitud < 0) {
             return data;
         } else {
-            result = data.stream().filter(p -> p.getLatitud() <= maxLatitud).collect(Collectors.toCollection(ArrayList::new));
+            result = data.stream().
+                    filter(p -> p.getLatitud() <= maxLatitud).
+                    collect(Collectors.toCollection(ArrayList::new));
         }
 
         if (sortDirection.equalsIgnoreCase("asc")) {
