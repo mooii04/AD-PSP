@@ -1,4 +1,4 @@
-package com.example.alumnoyproducto.model;
+package com.example.alumnoyproducto.producto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

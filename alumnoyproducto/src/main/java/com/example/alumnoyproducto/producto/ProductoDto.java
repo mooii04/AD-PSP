@@ -1,6 +1,4 @@
-package com.example.alumnoyproducto.dto;
-
-import com.example.alumnoyproducto.model.Categoria;
+package com.example.alumnoyproducto.producto;
 
 import java.util.List;
 

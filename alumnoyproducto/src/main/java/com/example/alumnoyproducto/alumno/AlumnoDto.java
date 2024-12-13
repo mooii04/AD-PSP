@@ -1,7 +1,4 @@
-package com.example.alumnoyproducto.dto;
-
-import com.example.alumnoyproducto.model.Curso;
-import com.example.alumnoyproducto.model.Direccion;
+package com.example.alumnoyproducto.alumno;
 
 public record AlumnoDto (
         String nombre,
