@@ -9,12 +9,13 @@ public record ProductoDto (
         String categoria
 ){
 
-    public static ProductoDto toProducto(Producto p){
+    //Este metodo convierte un objeto de tipo Producto en un objeto de tipo ProductoDto
+    public static ProductoDto toProducto(Producto producto){
         return new ProductoDto(
-                p.getNombre(),
-                p.getPvp(),
-                p.getImagenes().get(0),
-                p.getCategoria().getNombre()
+                producto.getNombre(),
+                producto.getPvp(),
+                producto.getImagenes().get(0),
+                producto.getCategoria().getNombre()
         );
     }
 

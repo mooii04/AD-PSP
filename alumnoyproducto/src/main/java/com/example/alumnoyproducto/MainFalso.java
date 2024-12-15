@@ -12,8 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
 
-@SpringBootApplication
-public class Run {
+//@SpringBootApplication
+public class MainFalso {
 
     @PostConstruct
     public static void main(String[] args) {
