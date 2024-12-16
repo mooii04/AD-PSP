@@ -8,7 +8,7 @@ public record AlumnoDto (
         String direccion
 ){
 
-    // Este método convierte un objeto de tipo Alumno en un objeto de tipo AlumnoDto
+    // Este metodo convierte un objeto de tipo Alumno en un objeto de tipo AlumnoDto
     public static AlumnoDto toAlumno(Alumno alumno){
         return new AlumnoDto(
                 alumno.getNombre(),

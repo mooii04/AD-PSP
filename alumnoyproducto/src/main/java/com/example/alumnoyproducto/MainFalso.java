@@ -9,16 +9,19 @@ import com.example.alumnoyproducto.producto.Producto;
 import com.example.alumnoyproducto.producto.ProductoDto;
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
+
 
 import java.util.Arrays;
 
-//@SpringBootApplication
+@Component
 public class MainFalso {
 
     @PostConstruct
-    public static void main(String[] args) {
+    public void run() {
 
-        Categoria categoria = new Categoria(1L, "Electrónica");
+        //PRODUCTO
+        Categoria categoria = new Categoria(1L, "Viaje");
         Producto producto = Producto.builder()
                 .id(1L)
                 .nombre("Maleta")
@@ -34,7 +37,7 @@ public class MainFalso {
         Direccion direccion = Direccion.builder()
                 .id(1L)
                 .tipoVia("Plaza")
-                .linea1("Plaza del Marqués")
+                .linea1("Plaza del Marques")
                 .linea2("nº 13")
                 .cp("41950")
                 .poblacion("Castilleja de la Cuesta")
@@ -44,16 +47,16 @@ public class MainFalso {
         Curso curso = Curso.builder()
                 .id(1L)
                 .nombre("Base de Datos")
-                .tipo("Informática")
+                .tipo("Informatica")
                 .tutor("Luismi")
                 .aula("1º DAM")
                 .build();
 
         Alumno alumno = Alumno.builder()
                 .id(1L)
-                .nombre("Moisés")
+                .nombre("Moises")
                 .apellido1("Dorado")
-                .apellido2("Gutiérrez")
+                .apellido2("Gutierrez")
                 .email("dorado.gumoi24@triana.salesianos.edu")
                 .curso(curso)
                 .direccion(direccion)
