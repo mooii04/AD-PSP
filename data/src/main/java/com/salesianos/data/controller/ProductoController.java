@@ -26,6 +26,13 @@ public class ProductoController {
                 .toList();
     }
 
+    /*
+    @GetMapping("/product")
+    public List<Producto> getAllProduct() {
+        return productoService.findAll();
+    }
+     */
+
     @GetMapping("/{id}")
     public Producto getById(@PathVariable Long id) {
         return productoService.findById(id);

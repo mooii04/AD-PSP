@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categoria/")
+@RequestMapping("/category/")
 @RequiredArgsConstructor
 public class CategoriaController {
 
@@ -23,12 +23,12 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}")
-    public Categoria getById(Long id) {
+    public Categoria getById(@PathVariable Long id) {
         return categoriaService.findById(id);
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> create(Categoria categoria) {
+    public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
         return ResponseEntity.ok(categoriaService.save(categoria));
     }
 

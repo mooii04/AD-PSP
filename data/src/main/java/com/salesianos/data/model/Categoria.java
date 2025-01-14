@@ -1,5 +1,7 @@
 package com.salesianos.data.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -25,7 +27,23 @@ public class Categoria {
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
     @Builder.Default
+    @ToString.Exclude
+    //@JsonManagedReference
     private List<Producto> productos = new ArrayList<>();
+
+
+    // Métodos helpers
+
+    public void addProducto(Producto p) {
+        p.setCategoria(this);
+        this.getProductos().add(p);
+    }
+
+    public void removeProducto(Producto p) {
+        this.getProductos().remove(p);
+        p.setCategoria(null);
+    }
+
 
     @Override
     public final boolean equals(Object o) {
