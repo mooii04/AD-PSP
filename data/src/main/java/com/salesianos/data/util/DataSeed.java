@@ -22,6 +22,8 @@ public class DataSeed {
     @PostConstruct
     public void run () {
 
+        /*
+
         //Categoria c = categoriaRepository.getReferenceById(1L);
 
         //No hacer orElse null, hacerlo mejor con Optional!!!!!
@@ -59,6 +61,10 @@ public class DataSeed {
 
         productoRepository.findAll()
                 .forEach(System.out::println);
+
+         */
+
+
 
     }
 
