@@ -31,10 +31,6 @@ public class Producto {
     @Column(name = "precio")
     private double precio;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id", foreignKey = @ForeignKey(name = "fk_producto_categoria"))
-    //@JsonBackReference
-    private Categoria categoria;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
