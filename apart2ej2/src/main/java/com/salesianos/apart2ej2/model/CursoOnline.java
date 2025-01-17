@@ -1,9 +1,6 @@
 package com.salesianos.apart2ej2.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -26,6 +23,11 @@ public class CursoOnline {
 
     private double puntuacion;
 
+    @ManyToOne
+    @JoinColumn(name = "profesor_id")
+    private Profesor profesor;
 
+    @OneToMany(mappedBy = "cursoOnline")
+    private List<Video> videos;
 
 }

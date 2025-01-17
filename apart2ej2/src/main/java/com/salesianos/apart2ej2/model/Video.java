@@ -25,6 +25,7 @@ public class Video {
     private String url;
 
     @ManyToOne
+    @JoinColumn(name = "curso_id")
     private CursoOnline cursoOnline;
 
 
