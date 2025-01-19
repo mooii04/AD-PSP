@@ -23,9 +23,9 @@ public class Categoria {
 
     private String nombre;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "categoria_id", foreignKey = @ForeignKey(name = "fk_categoria_categoria"))
-    private Categoria categoria;
+    private List<Categoria> categorias = new ArrayList<>();
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
     @Builder.Default
