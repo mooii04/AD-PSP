@@ -6,6 +6,7 @@ import com.salesianos.apart2ej2.model.Video;
 import com.salesianos.apart2ej2.repository.CursoOnlineRepository;
 import com.salesianos.apart2ej2.repository.ProfesorRepository;
 import com.salesianos.apart2ej2.repository.VideoRepository;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,7 @@ public class DataSeed {
     private final ProfesorRepository profesorRepository;
     private final VideoRepository videoRepository;
 
+    @PostConstruct
     public void run() {
 
         Profesor profesor1 = Profesor.builder()

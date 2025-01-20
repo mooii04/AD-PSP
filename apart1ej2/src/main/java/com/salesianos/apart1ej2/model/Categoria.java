@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,9 +25,16 @@ public class Categoria {
 
     private String nombre;
 
-    @OneToMany
-    @JoinColumn(name = "categoria_id", foreignKey = @ForeignKey(name = "fk_categoria_categoria"))
-    private List<Categoria> categorias = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "categoria_relacion_id",
+            foreignKey = @ForeignKey(name = "fk_categoria_padre_categoria"))
+    private Categoria categoriaPadre;
+
+    @OneToMany(mappedBy = "categoriaPadre", fetch = FetchType.EAGER)
+    @Builder.Default
+    @ToString.Exclude
+    private List<Categoria> listaCategoriasHijas = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
     @Builder.Default

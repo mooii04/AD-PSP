@@ -21,28 +21,38 @@ public class DataSeed {
     public void run() {
 
         // Crear categorías
-        Categoria casual = categoriaRepository.save(
-                Categoria.builder().nombre("Casual").build()
-        );
+        Categoria c1 = Categoria.builder()
+                .nombre("Ropa")
+                .build();
 
-        Categoria hombre = categoriaRepository.save(
-                Categoria.builder().nombre("Hombre").categorias(
-                        List.of(casual)
-                ).build()
-        );
+        Categoria c2 = Categoria.builder()
+                .nombre("Moda")
+                .categoriaPadre(c1)
+                .build();
+
+        Categoria c3 = Categoria.builder()
+                .nombre("Camisetas")
+                .categoriaPadre(c2)
+                .build();
+
+        categoriaRepository.save(c1);
+        categoriaRepository.save(c2);
+        categoriaRepository.save(c3);
 
         // Crear y guardar el producto
         Producto p = Producto.builder()
-                .nombre("Pantalón")
-                .descripcion("Pantalón vaquero")
-                .pvp(12.45)
-                .categoria(hombre)
+                .nombre("Camiseta de manga corta")
+                .descripcion("Camiseta de manga corta de algodón")
+                .pvp(15.0)
+                .categoria(c1)
                 .build();
 
         productoRepository.save(p);
 
-        // Verificar los datos guardados
-        productoRepository.findAll().forEach(System.out::println);
+        System.out.println("Producto guardado: " + p);
+        System.out.println("Categoría guardada: " + c1);
+        System.out.println("Categoría guardada: " + c2);
+        System.out.println("Categoría guardada: " + c3);
 
     }
 
