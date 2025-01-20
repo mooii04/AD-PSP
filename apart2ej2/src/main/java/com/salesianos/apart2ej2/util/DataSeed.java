@@ -5,7 +5,6 @@ import com.salesianos.apart2ej2.model.Profesor;
 import com.salesianos.apart2ej2.model.Video;
 import com.salesianos.apart2ej2.repository.CursoOnlineRepository;
 import com.salesianos.apart2ej2.repository.ProfesorRepository;
-import com.salesianos.apart2ej2.repository.VideoRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,56 +15,62 @@ public class DataSeed {
 
     private final CursoOnlineRepository cursoOnlineRepository;
     private final ProfesorRepository profesorRepository;
-    private final VideoRepository videoRepository;
 
     @PostConstruct
     public void run() {
 
-        Profesor profesor1 = Profesor.builder()
-                .nombre("Juan Pérez")
-                .email("juan@gamil.com")
+        Profesor p1 = Profesor.builder()
+                .nombre("Profesor 1")
+                .email("prof.gmail.com")
                 .puntuacion(4.5)
                 .build();
 
-        profesorRepository.save(profesor1);
-
-        CursoOnline curso1 = CursoOnline.builder()
-                .nombre("Java Básico")
+        Profesor p2 = Profesor.builder()
+                .nombre("Profesor 2")
+                .email("prof2.gmail.com")
                 .puntuacion(4.7)
-                .profesor(profesor1)
                 .build();
 
-        cursoOnlineRepository.save(curso1);
+        CursoOnline c1 = CursoOnline.builder()
+                .nombre("Curso 1")
+                .puntuacion(4.5)
+                .profesor(p1)
+                .build();
 
-        Video video1 = Video.builder()
+        CursoOnline c2 = CursoOnline.builder()
+                .nombre("Curso 2")
+                .puntuacion(4.7)
+                .profesor(p2)
+                .build();
+
+        Video v1 = Video.builder()
                 .orden(1L)
-                .titulo("Introducción a Java")
-                .descripcion("Conceptos básicos de Java")
-                .url("http://example")
-                .cursoOnline(curso1)
+                .titulo("Video 1")
+                .descripcion("Descripcion 1")
+                .url("url1")
+                .cursoOnline(c1)
                 .build();
 
-        videoRepository.save(video1);
-
-        Video video2 = Video.builder()
+        Video v2 = Video.builder()
                 .orden(2L)
-                .titulo("Variables y tipos de datos")
-                .descripcion("Variables y tipos de datos en Java")
-                .url("http://example")
-                .cursoOnline(curso1)
+                .titulo("Video 2")
+                .descripcion("Descripcion 2")
+                .url("url2")
+                .cursoOnline(c1)
                 .build();
 
-        videoRepository.save(video2);
+        profesorRepository.save(p1);
+        profesorRepository.save(p2);
+        cursoOnlineRepository.save(c1);
+        cursoOnlineRepository.save(c2);
 
 
-        System.out.println("Lista de profesores:");
-        profesorRepository.findAll().forEach(System.out::println);
-
-        System.out.println("Lista de cursos:");
-        cursoOnlineRepository.findAll().forEach(System.out::println);
-
-        System.out.println("Lista de videos:");
-        videoRepository.findAll().forEach(System.out::println);
+        System.out.println("Profesor 1: " + p1);
+        System.out.println("Profesor 2: " + p2);
+        System.out.println("Curso 1: " + c1);
+        System.out.println("Curso 2: " + c2);
+        System.out.println("Video 1: " + v1);
+        System.out.println("Video 2: " + v2);
 
     }
 

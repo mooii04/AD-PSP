@@ -28,6 +28,4 @@ public class Video {
     @JoinColumn(name = "curso_id")
     private CursoOnline cursoOnline;
 
-
-
 }

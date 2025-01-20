@@ -23,11 +23,25 @@ public class CursoOnline {
 
     private double puntuacion;
 
+    //La que no esta en el rombo gestiona el ciclo de vida, lleva cascade all
     @ManyToOne
     @JoinColumn(name = "profesor_id")
     private Profesor profesor;
 
-    @OneToMany(mappedBy = "cursoOnline")
-    private List<Video> videos;
+    @OneToMany(mappedBy = "cursoOnline",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
+    private List<Video> videos = new ArrayList<>();
+
+    // Helpers
+    public void addVideo(Video v) {
+        this.videos.add(v);
+        v.setCursoOnline(this);
+    }
+
+    public void removeVideo(Video v) {
+        this.videos.remove(v);
+        v.setCursoOnline(null);
+    }
 
 }

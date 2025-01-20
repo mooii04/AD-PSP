@@ -25,7 +25,18 @@ public class Profesor {
 
     private double puntuacion;
 
-    @OneToMany(mappedBy = "profesor")
-    private List<CursoOnline> cursos;
+    @OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
+    private List<CursoOnline> cursos = new ArrayList<>();
+
+    // Helpers
+    public void addCurso(CursoOnline c) {
+        this.cursos.add(c);
+        c.setProfesor(this);
+    }
+
+    public void removeCurso(CursoOnline c) {
+        this.cursos.remove(c);
+        c.setProfesor(null);
+    }
 
 }
