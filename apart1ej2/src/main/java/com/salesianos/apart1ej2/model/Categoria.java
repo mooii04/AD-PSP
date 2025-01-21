@@ -30,7 +30,9 @@ public class Categoria {
             foreignKey = @ForeignKey(name = "fk_categoria_padre_categoria"))
     private Categoria categoriaPadre;
 
-    @OneToMany(mappedBy = "categoriaPadre", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "categoriaPadre",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
     @Builder.Default
     @ToString.Exclude
     private List<Categoria> listaCategoriasHijas = new ArrayList<>();
