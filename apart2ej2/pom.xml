@@ -82,6 +82,21 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+					<!--<arguments> <argument> -Xdebug </argument> <argument> -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 </argument> </arguments>--> <jvmArguments>
+					-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+				</jvmArguments>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
