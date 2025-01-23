@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class DataSeed {
+public class DataSeedSuperClass {
 
     private final ElectronicaRepository electronicaRepository;
     private final MovilRepository movilRepository;
