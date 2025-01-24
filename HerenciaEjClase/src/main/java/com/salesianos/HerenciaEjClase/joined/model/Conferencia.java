@@ -3,12 +3,14 @@ package com.salesianos.HerenciaEjClase.joined.model;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
 @Data
+@SuperBuilder
 public class Conferencia extends Evento {
 
     private String ponente;

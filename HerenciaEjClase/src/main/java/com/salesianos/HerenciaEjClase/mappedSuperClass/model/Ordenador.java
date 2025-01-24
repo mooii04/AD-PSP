@@ -2,11 +2,13 @@ package com.salesianos.HerenciaEjClase.mappedSuperClass.model;
 
 import jakarta.persistence.Entity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@SuperBuilder
 public class Ordenador extends Electronica{
 
     private String procesador;

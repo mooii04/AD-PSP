@@ -2,19 +2,16 @@ package com.salesianos.HerenciaEjClase.mappedSuperClass;
 
 import com.salesianos.HerenciaEjClase.mappedSuperClass.model.Movil;
 import com.salesianos.HerenciaEjClase.mappedSuperClass.model.Ordenador;
-import com.salesianos.HerenciaEjClase.mappedSuperClass.repository.ElectronicaRepository;
 import com.salesianos.HerenciaEjClase.mappedSuperClass.repository.MovilRepository;
 import com.salesianos.HerenciaEjClase.mappedSuperClass.repository.OrdenadorRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
 public class DataSeedSuperClass {
 
-    private final ElectronicaRepository electronicaRepository;
     private final MovilRepository movilRepository;
     private final OrdenadorRepository ordenadorRepository;
 

@@ -1,8 +1,6 @@
 package com.salesianos.HerenciaEjClase.singleTable.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -15,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 @SuperBuilder
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Socio {
 
     @Id
