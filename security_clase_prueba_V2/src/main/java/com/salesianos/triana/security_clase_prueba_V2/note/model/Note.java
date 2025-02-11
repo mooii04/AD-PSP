@@ -1,20 +1,16 @@
 package com.salesianos.triana.security_clase_prueba_V2.note.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,10 +23,7 @@ public class Note {
 
     private String title;
     private String content;
-
-    @CreatedBy
     private String author;
-
     private boolean important;
 
     @Builder.Default

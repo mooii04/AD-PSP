@@ -2,11 +2,8 @@ package com.salesianos.triana.security_clase_prueba_V2.note.controller;
 
 import com.salesianos.triana.security_clase_prueba_V2.note.model.Note;
 import com.salesianos.triana.security_clase_prueba_V2.note.repository.NoteRepository;
-import com.salesianos.triana.security_clase_prueba_V2.user.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -21,12 +18,10 @@ public class NoteController {
     private final NoteRepository repository;
 
     @GetMapping("/")
-    public ResponseEntity<List<Note>> getAll(@AuthenticationPrincipal User user) {
+    public ResponseEntity<List<Note>> getAll() {
         // Utilizamos un método comun para devolver la respuesta de todos los List<Note>
-        //return buildResponseOfAList(repository.findAll());
-        return buildResponseOfAList(repository.findByAuthor(user.getId().toString()));
+        return buildResponseOfAList(repository.findAll());
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Note> getById(@PathVariable Long id) {
@@ -37,7 +32,6 @@ public class NoteController {
          */
         return ResponseEntity.of(repository.findById(id));
     }
-
 
     @GetMapping("/author/{author}")
     public ResponseEntity<List<Note>> getByAuthor(@PathVariable String author) {
@@ -81,7 +75,6 @@ public class NoteController {
 
     }
 
-    @PreAuthorize("@noteRepository.findById(#id).orElse(new net.openwebinars.springboot.restjwt.note.model.Note()).author == authentication.principal.getId().toString()")
     @PutMapping("/{id}")
     public ResponseEntity<Note> edit(@PathVariable Long id, @RequestBody Note edited) {
 
@@ -90,7 +83,7 @@ public class NoteController {
                         .map(note -> {
                             note.setTitle(edited.getTitle());
                             note.setContent(edited.getContent());
-                            //note.setAuthor(edited.getAuthor());
+                            note.setAuthor(edited.getAuthor());
                             note.setImportant(edited.isImportant());
                             return repository.save(note);
                         }));
@@ -109,8 +102,5 @@ public class NoteController {
         return ResponseEntity.noContent().build();
 
     }
-
-
-
 
 }

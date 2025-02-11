@@ -29,6 +29,9 @@ import java.util.stream.Collectors;
 @Builder
 public class User implements UserDetails {
 
+    // Usamos UUID como ID de los usuarios
+    // Se utiliza la estrategia de generación basada en IP y fecha.
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -71,8 +74,6 @@ public class User implements UserDetails {
 
     @Builder.Default
     private LocalDateTime lastPasswordChangeAt = LocalDateTime.now();
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
