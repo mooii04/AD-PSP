@@ -27,7 +27,7 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
-    AuthenticationManager authenticationManager(HttpSecurity http) {
+    AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
 
         AuthenticationManagerBuilder authenticationManagerBuilder =
                 http.getSharedObject(AuthenticationManagerBuilder.class);
@@ -37,28 +37,26 @@ public class SecurityConfig {
                         .build();
 
         return authenticationManager;
-
     }
 
     @Bean
-    DaoAuthenticationProvider authenticationProvider(){
+    DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider p = new DaoAuthenticationProvider();
 
         p.setUserDetailsService(userDetailsService);
         p.setPasswordEncoder(passwordEncoder);
-
         return p;
     }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(crsf -> crsf.disable());
+        http.csrf(csrf -> csrf.disable());
         http.cors(Customizer.withDefaults());
         http.sessionManagement((session) -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.authorizeHttpRequests((auth) -> auth
-                .requestMatchers(HttpMethod.POST, "auth/register", "auth/login").permitAll()
+        http.authorizeHttpRequests(authz -> authz
+                .requestMatchers(HttpMethod.POST, "/auth/register", "/auth/login").permitAll()
                 .anyRequest().authenticated());
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
