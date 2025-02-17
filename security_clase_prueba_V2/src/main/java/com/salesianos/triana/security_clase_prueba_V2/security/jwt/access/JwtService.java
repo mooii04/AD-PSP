@@ -25,30 +25,29 @@ public class JwtService {
     private String jwtSecret;
 
     @Value("${jwt.duration}")
-    private long jwtLifeMinutes;
+    private long jwtLifeInMinutes;
 
     private JwtParser jwtParser;
 
     private SecretKey secretKey;
 
     @PostConstruct
-    public void init(){
+    public void init() {
 
         secretKey = Keys.hmacShaKeyFor(jwtSecret.getBytes());
 
         jwtParser = Jwts.parser()
                 .verifyWith(secretKey)
                 .build();
-
     }
 
-    public String generateToken(User user){
+    public String generateAccessToken(User user) {
 
-        Date tokenExpirationDate =
+        Date tokeExpirationDate =
                 Date.from(
                         LocalDateTime
                                 .now()
-                                .plusMinutes(jwtLifeMinutes)
+                                .plusMinutes(jwtLifeInMinutes)
                                 .atZone(ZoneId.systemDefault())
                                 .toInstant()
                 );
@@ -56,14 +55,14 @@ public class JwtService {
         return Jwts.builder()
                 .header().type(TOKEN_TYPE)
                 .and()
-                .setSubject(user.getId().toString())
+                .subject(user.getId().toString())
                 .issuedAt(new Date())
-                .expiration(tokenExpirationDate)
+                .expiration(tokeExpirationDate)
                 .signWith(secretKey)
                 .compact();
     }
 
-    public UUID getUserIdFromToken(String token) {
+    public UUID getUserIdFromAccessToken(String token) {
         String sub = jwtParser.parseClaimsJws(token).getBody().getSubject();
         return UUID.fromString(sub);
     }
@@ -73,7 +72,7 @@ public class JwtService {
         try {
             jwtParser.parseClaimsJws(token);
             return true;
-        } catch (SignatureException | MalformedJwtException | ExpiredJwtException | UnsupportedJwtException | IllegalArgumentException ex) {
+        } catch(SignatureException | MalformedJwtException | ExpiredJwtException | UnsupportedJwtException | IllegalArgumentException ex) {
             throw new JwtException(ex.getMessage());
         }
 
